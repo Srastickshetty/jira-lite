@@ -1,36 +1,315 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🧠 Jira Lite – Full Stack Task Management System
 
-## Getting Started
+A modern full-stack task management system with:
 
-First, run the development server:
+👑 Admin Command Center
 
-```bash
+👨‍💻 Employee Workspace
+
+📊 Real-time Analytics
+
+🎯 Drag & Drop Task Assignment
+
+📅 Deadlines & Overdue Detection
+
+🔐 JWT Authentication
+
+📦 MongoDB Database
+
+Built using Next.js App Router + MongoDB + JWT + TailwindCSS
+
+🚀 Live Demo
+
+(Add your deployed link here once deployed)
+
+🛠 Tech Stack
+Frontend
+
+Next.js 16 (App Router)
+
+React
+
+TypeScript
+
+Tailwind CSS
+
+Recharts (Analytics)
+
+@hello-pangea/dnd (Drag & Drop)
+
+Lucide Icons
+
+Backend (API Routes inside Next.js)
+
+Next.js API Routes
+
+MongoDB
+
+Mongoose
+
+JWT Authentication
+
+bcryptjs
+
+🏗 Project Architecture
+
++---app
+|   |   globals.css
+|   |   layout.tsx
+|   |   page.tsx
+|   |
+|   +---api
+|   |   +---admin
+|   |   |   +---create-user
+|   |   |   |       route.ts
+|   |   |   |
+|   |   |   +---tasks
+|   |   |   |       route.ts
+|   |   |   |
+|   |   |   +---update-role
+|   |   |   |       route.ts
+|   |   |   |
+|   |   |   \---users
+|   |   |           route.ts
+|   |   |
+|   |   +---auth
+|   |   |   +---login
+|   |   |   |       route.ts
+|   |   |   |
+|   |   |   +---me
+|   |   |   |       route.ts
+|   |   |   |
+|   |   |   \---register
+|   |   |           route.ts
+|   |   |
+|   |   \---tasks
+|   |       |   route.ts
+|   |       |
+|   |       \---[id]
+|   |               route.ts
+|   |
+|   +---dashboard
+|   |   |   layout.tsx
+|   |   |   page.tsx
+|   |   |
+|   |   +---analytics
+|   |   |       page.tsx
+|   |   |
+|   |   \---tasks
+|   |       \---[id]
+|   |               page.tsx
+|   |
+|   \---register
+|           page.tsx
+|
++---components
+|   |   TaskModal.tsx
+|   |
+|   +---admin
+|   |       AdminDashboard.tsx
+|   |
+|   \---employee
+|           EmployeeDashboard.tsx
+|
++---lib
+|       auth.ts
+|       db.ts
+|
+\---models
+        Task.ts
+        User.ts
+
+
+🔐 Authentication Flow
+
+User logs in via /api/auth/login
+
+Backend validates password using bcrypt
+
+JWT token generated
+
+Token stored in localStorage
+
+All API routes verify token using middleware logic
+
+Role-based rendering:
+
+admin → AdminDashboard
+
+employee → EmployeeDashboard
+
+👑 Admin Features
+1️⃣ User Management
+
+Create employees
+
+Delete users
+
+Toggle role (Admin ↔ Employee)
+
+View workload per employee
+
+2️⃣ Drag & Drop Task Assignment
+
+Unassigned column
+
+Employee columns
+
+Drag task → assign to employee
+
+Real-time backend update
+
+3️⃣ System Analytics
+
+Total tasks
+
+Completion rate
+
+Overdue tasks
+
+Active employees
+
+Tasks per employee (Bar Chart)
+
+Status distribution (Pie Chart)
+
+4️⃣ Live Task Monitor
+
+Shows latest tasks
+
+Click to view detailed page
+
+👨‍💻 Employee Features
+1️⃣ Kanban Board
+
+Todo
+
+In Progress
+
+Done
+
+Drag between columns
+
+2️⃣ Task Creation
+
+Title
+
+Description
+
+Priority
+
+Due Date
+
+3️⃣ Task Modal
+
+Update status
+
+Add subtasks
+
+Mark subtasks complete
+
+Add comments
+
+4️⃣ Deadline System
+
+Due Today indicator
+
+Overdue highlight
+
+Sorted by due date
+
+📊 Analytics Logic
+
+Metrics calculated in frontend:
+
+Completion Rate = (Done / Total) × 100
+
+Overdue = dueDate < today AND status != done
+
+Tasks per employee = grouped by assignedTo
+
+Status distribution = grouped by status
+
+Charts built using Recharts.
+
+🗄 Database Models
+User Model
+{
+  name: String,
+  email: String,
+  password: String (hashed),
+  role: "admin" | "employee"
+}
+
+Task Model
+{
+  title: String,
+  description: String,
+  status: "todo" | "inprogress" | "done",
+  priority: "low" | "medium" | "high",
+  dueDate: Date,
+  createdBy: ObjectId,
+  assignedTo: ObjectId,
+  subtasks: [
+    {
+      title: String,
+      completed: Boolean
+    }
+  ],
+  comments: [
+    {
+      text: String,
+      createdAt: Date
+    }
+  ]
+}
+
+⚙️ How To Run Locally
+1️⃣ Clone
+git clone <your-repo-url>
+cd jira-lite
+
+2️⃣ Install Dependencies
+npm install
+
+3️⃣ Create Environment File
+
+Create:
+
+.env.local
+
+
+Add:
+
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_super_secret_key
+
+4️⃣ Run Development Server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Open:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+http://localhost:3000
 
-## Learn More
+🌍 Deployment Guide
+Recommended: Vercel
+1️⃣ Push to GitHub
+git add .
+git commit -m "Production ready"
+git push
 
-To learn more about Next.js, take a look at the following resources:
+2️⃣ Go to:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+https://vercel.com
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3️⃣ Import Project
+4️⃣ Add Environment Variables in Vercel:
 
-## Deploy on Vercel
+MONGODB_URI
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+JWT_SECRET
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5️⃣ Deploy
+
+Done.
