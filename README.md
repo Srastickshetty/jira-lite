@@ -19,7 +19,9 @@ Database - MongoDB & Mongoose
 Auth - JWT (JSON Web Tokens) & Bcrypt.js
  Visuals - Recharts, Lucide Icons
 
-
+******Test Credentials**:
+**admin access:  1234  passs=1234**
+**employee:  hello     pass=hello**
 
 🏗 Project Architecture
 +---app
