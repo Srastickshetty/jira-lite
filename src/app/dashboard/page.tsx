@@ -3,9 +3,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Loader2 } from "lucide-react"; // Using Lucide for a better spinner
-
-// Components
 import AdminDashboard from "@/components/admin/AdminDashboard";
 import EmployeeDashboard from "@/components/employee/EmployeeDashboard";
 
@@ -36,8 +33,7 @@ export default function DashboardPage() {
         });
         setUser(res.data);
       } catch (err) {
-        console.error("Auth error:", err);
-        localStorage.removeItem("token"); // Clean up invalid token
+        localStorage.removeItem("token");
         router.push("/");
       } finally {
         setLoading(false);
@@ -47,31 +43,12 @@ export default function DashboardPage() {
     fetchUser();
   }, [router]);
 
-  // --- LOADING STATE ---
-  if (loading) {
-    return (
-      <div className="min-h-screen w-full flex flex-col items-center justify-center bg-slate-50">
-        <Loader2 className="w-10 h-10 text-indigo-600 animate-spin mb-4" />
-        <p className="text-slate-600 font-medium animate-pulse">
-          Securing your session...
-        </p>
-      </div>
-    );
-  }
-
-  // --- REDIRECT IF NO USER ---
+  if (loading) return null;
   if (!user) return null;
 
-  // --- DASHBOARD LAYOUT WRAPPER ---
-  return (
-    <main className="min-h-screen bg-[#F8FAFC]">
-      <div key={user.role}>
-    {user.role === "admin" ? (
-      <AdminDashboard user={user} />
-    ) : (
-      <EmployeeDashboard user={user} />
-    )}
-  </div>
-    </main>
+  return user.role === "admin" ? (
+    <AdminDashboard user={user} />
+  ) : (
+    <EmployeeDashboard user={user} />
   );
 }

@@ -16,6 +16,14 @@ import {
   Draggable,
   DropResult,
 } from "@hello-pangea/dnd";
+interface AdminDashboardProps {
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+    role: "admin" | "employee";
+  };
+}
 
 interface User {
   _id: string;
@@ -33,7 +41,8 @@ interface Task {
   assignedTo: any; 
 }
 
-export default function AdminDashboard() {
+export default function AdminDashboard({ user }: AdminDashboardProps) {
+
   const router = useRouter(); 
   const [users, setUsers] = useState<User[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);

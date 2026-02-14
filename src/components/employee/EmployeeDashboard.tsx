@@ -19,11 +19,18 @@ interface Task {
   createdAt?: string;
   dueDate?: string;
 }
+interface EmployeeDashboardProps {
+  user: {
+    _id: string;
+    name: string;
+    email: string;
+    role: "admin" | "employee";
+  };
+}
 
-export default function Dashboard() {
+export default function EmployeeDashboard({ user }: EmployeeDashboardProps) {
   const router = useRouter();
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [user, setUser] = useState<any>(null);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("medium");
@@ -55,20 +62,12 @@ export default function Dashboard() {
     }
   }, [router]);
 
-  const fetchUser = useCallback(async () => {
-    try {
-      const token = localStorage.getItem("token");
-      const res = await axios.get("/api/auth/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setUser(res.data);
-    } catch (error) { console.error("User fetch failed"); }
-  }, []);
+  
 
   useEffect(() => { 
     fetchTasks(); 
-    fetchUser(); 
-  }, [fetchTasks, fetchUser]);
+     
+  }, [fetchTasks]);
 
   const triggerCelebrate = () => {
     confetti({
