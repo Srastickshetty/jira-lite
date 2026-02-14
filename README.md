@@ -1,58 +1,27 @@
-🧠 Jira Lite – Full Stack Task Management System
+🧠 Jira LiteFull-Stack Task Management System
 
-A modern full-stack task management system with:
+Jira Lite is a high-performance productivity suite designed to bridge the gap between administrative oversight and employee execution. Built with the Next.js 15+ App Router, it leverages real-time data handling and role-based access control.🚀 
 
-👑 Admin Command Center
 
-👨‍💻 Employee Workspace
+Key Highlight
+👑 Admin Command Center: Centralized oversight for user roles and global task distribution.
+👨‍💻 Employee Workspace: Personal Kanban boards with intuitive status tracking.
+🎯 Drag & Drop Engine: Seamless task assignment using @hello-pangea/dnd.📊 Dynamic Analytics: Real-time data visualization via Recharts.
+📅 Intelligence: Automated overdue detection and deadline sorting.
 
-📊 Real-time Analytics
 
-🎯 Drag & Drop Task Assignment
-
-📅 Deadlines & Overdue Detection
-
-🔐 JWT Authentication
-
-📦 MongoDB Database
-
-Built using Next.js App Router + MongoDB + JWT + TailwindCSS
-
-🚀 Live Demo
-
-(Add your deployed link here once deployed)
 
 🛠 Tech Stack
-Frontend
+ComponentTechnology
+frontend - Next.js 15+ (App Router), TypeScript, Tailwind CSS
+Backend - Next.js API Routes (Serverless)
+Database - MongoDB & Mongoose
+Auth - JWT (JSON Web Tokens) & Bcrypt.js
+ Visuals - Recharts, Lucide Icons
 
-Next.js 16 (App Router)
 
-React
-
-TypeScript
-
-Tailwind CSS
-
-Recharts (Analytics)
-
-@hello-pangea/dnd (Drag & Drop)
-
-Lucide Icons
-
-Backend (API Routes inside Next.js)
-
-Next.js API Routes
-
-MongoDB
-
-Mongoose
-
-JWT Authentication
-
-bcryptjs
 
 🏗 Project Architecture
-
 +---app
 |   |   globals.css
 |   |   layout.tsx
@@ -290,7 +259,10 @@ npm run dev
 
 Open:
 
-http://localhost:3000
+http://localhost:3001
+
+
+
 
 🌍 Deployment Guide
 Recommended: Vercel
@@ -310,6 +282,67 @@ MONGODB_URI
 
 JWT_SECRET
 
-5️⃣ Deploy
 
+5️⃣ Deploy
 Done.
+
+
+
+🧠 How It Works Internally
+Role Based Rendering
+DashboardPage →
+    if admin → AdminDashboard
+    else → EmployeeDashboard
+
+Task Assignment Flow
+
+Admin:
+
+Drag → PATCH /api/tasks/[id]
+→ assignedTo updated
+
+
+Employee:
+
+Change status → PATCH /api/tasks/[id]
+→ status updated
+
+🎯 Key Functionalities Implemented
+
+✔ JWT Authentication
+✔ Role Based Access
+✔ Admin Panel
+✔ Employee Panel
+✔ Drag & Drop
+✔ Subtasks
+✔ Comments
+✔ Deadline System
+✔ Overdue Detection
+✔ Analytics Dashboard
+✔ Task Detail Page
+✔ MongoDB Integration
+✔ REST API Routes
+
+📦 Future Improvements (Optional)
+
+Email notifications
+
+Activity timeline
+
+File attachments
+
+Team-based filtering
+
+Pagination
+
+Dark mode
+
+Audit logs
+
+Production security hardening
+
+👨‍💻 Author
+
+Developed by: K Srastick Kumar Shetty
+
+
